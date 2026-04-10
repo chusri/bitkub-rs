@@ -31,10 +31,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // 4. Ticker for BTC_THB
     let tickers = client.get_ticker(Some("btc_thb")).await?;
-    for (symbol, t) in &tickers {
+    for t in &tickers {
         println!(
-            "\nTicker {symbol}: last={} bid={} ask={} vol={} change={}%",
-            t.last, t.highest_bid, t.lowest_ask, t.base_volume, t.percent_change
+            "\nTicker {}: last={} bid={} ask={} vol={} change={}%",
+            t.symbol, t.last, t.highest_bid, t.lowest_ask, t.base_volume, t.percent_change
         );
     }
 

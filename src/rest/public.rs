@@ -3,8 +3,6 @@
 //! These endpoints do not require API credentials and return market-wide data
 //! such as server status, tickers, orderbook depth, and recent trades.
 
-use std::collections::HashMap;
-
 use crate::client::BitkubClient;
 use crate::error::Result;
 use crate::models::market::{
@@ -83,7 +81,7 @@ impl BitkubClient {
     pub async fn get_ticker(
         &self,
         symbol: Option<&str>,
-    ) -> Result<HashMap<String, Ticker>> {
+    ) -> Result<Vec<Ticker>> {
         let params: Vec<(&str, &str)> = match symbol {
             Some(sym) => vec![("sym", sym)],
             None => vec![],

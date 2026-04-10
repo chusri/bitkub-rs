@@ -19,6 +19,7 @@ pub struct SymbolInfo {
     pub freeze_cancel: bool,
     pub freeze_sell: bool,
     pub market_segment: String,
+    #[serde(with = "super::serde_helpers::flexible_decimal")]
     pub min_quote_size: Decimal,
     pub modified_at: String,
     pub name: String,
@@ -40,11 +41,9 @@ pub struct SymbolInfo {
 pub struct Ticker {
     pub symbol: String,
     pub base_volume: Decimal,
-    #[serde(rename = "high24hr")]
     pub high_24_hr: Decimal,
     pub highest_bid: Decimal,
     pub last: Decimal,
-    #[serde(rename = "low24hr")]
     pub low_24_hr: Decimal,
     pub lowest_ask: Decimal,
     pub percent_change: Decimal,
