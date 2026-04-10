@@ -168,29 +168,6 @@ impl BitkubClient {
         Self::unwrap_v3(envelope)
     }
 
-    /// Send an unsigned POST request expecting a V3 envelope.
-    pub(crate) async fn post<T: DeserializeOwned, B: Serialize>(
-        &self,
-        path: &str,
-        body: &B,
-    ) -> Result<T> {
-        let url = format!("{}{}", self.base_url, path);
-        debug!(method = "POST", path, "public v3 request");
-
-        let resp = self
-            .http
-            .post(&url)
-            .json(body)
-            .header(ACCEPT, "application/json")
-            .send()
-            .await?;
-
-        Self::check_status(&resp)?;
-
-        let envelope: V3Response = resp.json().await?;
-        Self::unwrap_v3(envelope)
-    }
-
     // -----------------------------------------------------------------------
     // Signed (private) helpers -- V3
     // -----------------------------------------------------------------------
