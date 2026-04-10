@@ -1,0 +1,26 @@
+[package]
+name = "bitkub"
+version = "0.1.0"
+edition = "2024"
+description = "Rust client library for the Bitkub cryptocurrency exchange API"
+license = "MIT"
+
+[dependencies]
+reqwest = { version = "0.12", features = ["json"] }
+tokio = { version = "1", features = ["full"] }
+tokio-tungstenite = { version = "0.26", features = ["native-tls"] }
+futures-util = "0.3"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rust_decimal = { version = "1", features = ["serde-str"] }
+hmac = "0.12"
+sha2 = "0.10"
+hex = "0.4"
+serde_urlencoded = "0.7"
+thiserror = "2"
+tracing = "0.1"
+url = "2"
+
+[dev-dependencies]
+tokio = { version = "1", features = ["full", "test-util"] }
+wiremock = "0.6"
